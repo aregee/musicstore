@@ -1,21 +1,22 @@
 <title> MusicStore | {{user.username}}</title>
-
-<a href="#/add/"><button>Add New</button></a>	
-<ul ng-repeat="track in tracks.objects">
+<h1> {{ user.username}}'s {{playlist.playlist_name}} </h1>
+<a href="#/add/"><button ng-click="Add()">Add New</button></a>	
+<ul ng-repeat="track in playlist.tracks">
   <li > {{ track.id }} <br> <b>Artist</b>: {{track.artist_name}} <br>  <b>Handle</b> {{track.track_name}}
   <button><a href="#/tracks/{{track.id}}"><b>View </b></a></button>	
   </li>
 </ul>
-
-<label ng-repeat="list in playlists.objects">
+<!--
+<label ng-repeat="list in playlist.tracks">
   <input
-    type="checkbox"
+    type="radio"
     name="selectedTracks[]"
-    value="{{list}"
+    value="{{list.resource_uri}"
     ng-checked="selection.indexOf(list) > -1"
     ng-click="toggleSelection(list)"
-  > {{list.playlist_name}}
+  > {{list}}
 </label>
+-->
 
 <label ng-repeat="track in tracks.objects">
   <input

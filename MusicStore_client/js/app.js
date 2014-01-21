@@ -33,6 +33,10 @@ config(function(RestangularProvider,$httpProvider ,$routeProvider) {
 	  		templateUrl: 'views/playlist.html',
 	  		controller: "ListViewCtrl"
 	  })
+  	  .when('/edit/playlists/:_id',{
+	  		templateUrl: 'views/add_tracks.html',
+	  		controller: "ListAddCtrl"
+	  })
 	  .when('/tracks/:phone_id', {
 	  		templateUrl:'views/view_track.html',
 	  		controller:"ViewTrackCtrl"
@@ -122,6 +126,45 @@ function ListViewCtrl($scope,Restangular,$routeParams,$q,$location){
 				
 }
 
+function ListAddCtrl($scope,Restangular,$routeParams,$q,$location){
+		$scope.user = lscache.get('userData')
+		$scope.id = $routeParams._id;
+		var defer = $q.defer();
+		$scope.selection=[];
+		$scope.tracks =  Restangular.all("tracks").getList();
+		defer.promise = $scope.playlist = Restangular.one("playlists",$scope.id).get();
+		$scope.Add = function() {
+		defer.promise.then(function (response) {
+		var data = Restangular.copy(response);
+		$scope.selection = data.tracks;
+		
+		$scope.toggleSelection = function toggleSelection(fruitName)		 {
+		var idx = $scope.selection.indexOf(fruitName);
+
+		// is currently selected
+		if (idx > -1) {
+		$scope.selection.splice(idx, 1);
+		}
+
+		// is newly selected
+		else {
+		$scope.selection.push(fruitName);
+		console.log($scope.selection);
+
+		}
+
+		}
+		console.log($scope.selection);  	
+
+
+
+			 	
+			 })
+
+		}
+
+}
+
 function ViewTrackCtrl($scope,Restangular,$routeParams,$q,$location){
 		$scope.user = lscache.get('userData')
 		$scope.id = $routeParams.phone_id;
@@ -144,9 +187,9 @@ function ViewTrackCtrl($scope,Restangular,$routeParams,$q,$location){
 function TracksList($scope,Restangular,$q,$location) {
 		$scope.user = lscache.get('userData');
 		$scope.tracks = Restangular.all("tracks").getList();
-		$scope.playlists = Restangular.one('users',$scope.user.id).getList('playlists');
+		//$scope.playlists = Restangular.one('users',$scope.user.id).getList('playlists');
 		$scope.selection = [];
-		var select  = [];
+		//var select  = [];
 
 	// toggle selection for a given fruit by name
  	$scope.toggleSelection = function toggleSelection(fruitName)		 {
@@ -167,7 +210,5 @@ function TracksList($scope,Restangular,$q,$location) {
   }
 	console.log($scope.selection);  	
 
-	$scope.create = function() {
-		Restangular.all("playlists").put() 
-	}
+
 }
