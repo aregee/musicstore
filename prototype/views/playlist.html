@@ -1,0 +1,12 @@
+<title>MusicStore| {{user.username }}</title>
+
+<h1>Songs in {{user.username }}'s playlist </h1> 
+<ul>
+<li ng-repeat="song in playlist.songs"> 
+	 {{ song.Artist_Name }} 
+	 {{ song.Track_Name }}
+
+	 <a href="#/tracks/{{ song.id}}/">view track </a>
+</li>
+	
+</ul>

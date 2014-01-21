@@ -1,0 +1,11 @@
+
+<title> WebId | {{user.username}}</title>
+<h1> {{ user.username}}'s Contact List </h1>
+<a href="#/add/social"><button>Add New</button></a>	
+<a href="#/edit/social/{{social.id}}"><button>Update</button></a>
+<button ng-Click="Delete()">Delete</button>		
+<ul>
+  <li> {{ social.id }} <br> <b>type</b>: {{social.type}} <br>  <b>Username</b> {{social.handle}}
+
+  </li>
+</ul>

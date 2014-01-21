@@ -1,0 +1,8 @@
+<title> WebId | {{user.username}}</title>
+<h1> {{ user.username}}'s PlayLists </h1>
+<ul ng-repeat="track in tracks.playlists">
+  <li> <h1>{{ track.playlist_name }} </h1> <b>link:</b> <a href="#/playlists/{{track.id}}"> view </a>
+<h1> tracks  </h1>
+<li ng-repeat="song in track.songs"> {{ song }}</li>
+</li>
+</ul>
