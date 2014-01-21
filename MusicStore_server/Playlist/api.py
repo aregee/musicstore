@@ -154,7 +154,7 @@ class UserResource(ModelResource,PublicEndpointResourceMixin):
 
 
 	def dehydrate(self,bundle, **kwargs):
-		bundle.data["Field"]	= "Value"
+		bundle.data["Field"]	= "Last_login"
 		return bundle 
 
 class TracksResource(ModelResource):
