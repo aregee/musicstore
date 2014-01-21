@@ -1,6 +1,6 @@
  'use strict';
 
-angular.module('Webid',['restangular','factory.session']).
+angular.module('MusicStore',['restangular','factory.session']).
 config(function(RestangularProvider,$httpProvider ,$routeProvider) {
 
 
